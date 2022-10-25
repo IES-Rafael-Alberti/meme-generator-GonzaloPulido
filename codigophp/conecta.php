@@ -1,6 +1,6 @@
 <?php
     $servidor="db"; // porque es el nombre asociado en docker-compose
-    $usuario="meme-generator";
+    $usuario="admin";
     $clave= "pestillo";
     $bd="meme-generator";
     try {

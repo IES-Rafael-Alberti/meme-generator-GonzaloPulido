@@ -1,3 +1,7 @@
+<?php 
+require("logintest.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +14,18 @@
 </head>
 <body>
     <header> 
-        <a ><img src="img/xerez.png" id="logo" alt="logo-xerez"></a>
-        <div>
+        <a href="index.php"><img src="img/xerez.png" id="logo" alt="logo-xerez"></a>
+        <h1 id="title">MEME GENERATOR</h1>
+        <nav>
             <?php 
-            
+            print("a");
             ?>
-            <a href=""><i class="fa-solid fa-power-off"></i></a>
-        </div>
+            <a href=""><i class="fa-sharp fa-solid fa-power-off"></i></a>
+        </nav>
     </header>
 </body>
 </html>
+
+<?php 
+require("conecta.php");
+?>
