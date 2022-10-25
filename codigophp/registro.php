@@ -1,10 +1,10 @@
 <?php
 if(isset($_POST['nombre'])) {
     require("conecta.php");
-
+    
     // recupera los datos del formulario
     $nombre = $_POST["nombre"];
-    $contraseña = $_POST["contraseña"];
+    $clave = $_POST["clave"];
     //$foto = $_FILES["foto"]["name"];
 
     // copia el archivo temporal en fotos con su nombre original
@@ -14,10 +14,10 @@ if(isset($_POST['nombre'])) {
     //$sql = "INSERT INTO usuario (nombre, edad, foto) values ('$nombre', $edad, '$foto')";
     
     // prepara la sentencia SQL. Le doy un nombre a cada dato del formulario 
-    $sql = "INSERT INTO usuario (nombre, contraseña) values (:nombre, :contrasena)";
+    $sql = "INSERT INTO usuario (nombre, clave) values (:nombre, :clave)";
     // asocia valores a esos nombres
     $datos = array("nombre" => $nombre,
-                   "contrasena" => $contraseña
+                   "clave" => $clave
                   );
     // comprueba que la sentencia SQL preparada está bien 
     $stmt = $conn->prepare($sql);
@@ -26,14 +26,12 @@ if(isset($_POST['nombre'])) {
         print("No se pudo dar de alta");
         exit(0);
     }
-    
     //print_r($_POST);
     //print_r($_FILES);
     //file_put_contents("fotos/perroooo", file_get_contents($_FILES["foto"]["tmp_name"]));
     
     // muestra la foto usando HTML
-    
-    exit(0);
+    header("Location: login.php");
 }
 ?>
 
@@ -56,8 +54,8 @@ if(isset($_POST['nombre'])) {
     <form action="" method="post" enctype="multipart/form-data">
             <label for="nombre">Usuario: </label>
             <input type="text" name="nombre" required>
-            <label for="contraseña">Contraseña: </label>
-            <input type="password" name="contraseña" required>
+            <label for="clave">Contraseña: </label>
+            <input type="password" name="clave" required>
             <input type="submit" value="Registrarse">
     </form>
 </body>

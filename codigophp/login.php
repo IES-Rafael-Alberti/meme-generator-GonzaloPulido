@@ -2,26 +2,28 @@
     if(isset($_POST['nombre'])){
         require("conecta.php");
 
-        $usuario = $_POST["nombre"];
-        $password = $_POST["contraseña"];
+        $nombre = $_POST["nombre"];
+        $clave = $_POST["clave"];
 
-        $sql = "SELECT * FROM usuario WHERE nombre = :nombre AND contraseña = :contrasena";
+        $sql = "SELECT * FROM usuario WHERE nombre = :nombre AND clave = :clave";
         
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":nombre",$nombre);
-        $stmt->bindParam(":contrasena",$contraseña);
+        $stmt->bindParam(":clave",$clave);
         $stmt->execute();
 
-        if($stmt->rowCount()== 1){
+        $datos = $stmt->fetch();
+        
+        if($datos){
             session_start();
-            $_SESSION["nombre"] = $usuario;
-            session_write_close();
+            $_SESSION["nombre"] = $datos["nombre"];
+            $_SESSION["id"] = $datos["id"];
             header("Location: index.php");
             exit(0);
         }
         header("Location: login.php");
         exit(0);
-    }
+        }
 ?>
 
 <!DOCTYPE html>
@@ -45,8 +47,8 @@
     <form action="" method="post" enctype="multipart/form-data">
             <label for="nombre">Usuario: </label>
             <input type="text" name="nombre" required>
-            <label for="contraseña">Contraseña: </label>
-            <input type="password" name="contraseña" required>
+            <label for="clave">Contraseña: </label>
+            <input type="password" name="clave" required>
             <input type="submit" value="Login">
     </form>
 </body>
