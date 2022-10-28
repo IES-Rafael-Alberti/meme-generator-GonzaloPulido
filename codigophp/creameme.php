@@ -1,5 +1,8 @@
 <?php 
 require("logintest.php");
+$id = $_GET["id"];
+$url = $_GET["url"];
+$cajas = $_GET["cajas"]
 ?>
 
 <!DOCTYPE html>
@@ -25,34 +28,16 @@ require("logintest.php");
     </header>
     <section>
         <article>
+        <form action="" method="post" enctype="multipart/form-data">
             <?php
-            //url for meme list
-            $url = 'https://api.imgflip.com/get_memes';
-            
-            //open connection
-            $ch = curl_init();
-            
-            //set the url
-            curl_setopt($ch,CURLOPT_URL, $url);
-            
-            //So that curl_exec returns the contents of the cURL; rather than echoing it
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
-            
-            //receive url content 
-            $result = curl_exec($ch);
-            
-            //decode content (assoc array)
-            $data = json_decode($result, true);
-            
-            //if success shows images
-            if($data["success"]) {
-                //iterates over memes array
-                foreach($data["data"]["memes"] as $meme) {
-                    //show meme image
-                    echo "<a href='creameme.php?id=". $meme['id']."&url=".$meme['url']."&cajas=".$meme['box_count']."'><img width='100px' src='" . $meme["url"] ."'>";
-                }
+            echo "<img width='250px' src='" . $url . "'>";
+            for($i = 1; $i<=$cajas;$i++){
+            echo "<br><label for='Name'>Texto $i</label><br>";
+            echo "<input type='text' name='nombre' id='nombre'><br>";
             }
+            echo "<input type='submit' value='Enviar'>"
             ?>
+        </form>
         </article>
     </section>
 </body>
