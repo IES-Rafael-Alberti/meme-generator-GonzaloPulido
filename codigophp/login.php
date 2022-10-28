@@ -38,7 +38,7 @@
 </head>
 <body>
     <header> 
-        <a href="index.php"><img src="img/xerez.png" id="logo" alt="logo-xerez"></a>
+    <a href="index.php"><img alt="Cambiar imagen al pasar el raton" onmouseout="this.src='img/xerez.png';" onmouseover="this.src='img/cadi.png';" src="img/xerez.png" id="logo"/></a>
         <h1 id="title">MEME GENERATOR</h1>
         <nav>
             <a href="registro.php" id="reg-button">Registro</a>
