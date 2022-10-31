@@ -1,3 +1,6 @@
+<?php 
+require("logintest.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@
         <h1 id="title">MEME GENERATOR</h1>
         <nav>
             <?php 
-            require("logintest.php");
+            
             $nombre = $_SESSION["nombre"];
             print("<a href='perfil.php'>$nombre</a>");
             ?>
@@ -35,7 +38,7 @@
                 if($memes){
                     foreach($memes as $meme) {
                         $ruta = $meme["ruta"];
-                        echo "<img src='$ruta'>";
+                        echo "<img src='$ruta'><br><br>";
                     }
                 }
             ?>
