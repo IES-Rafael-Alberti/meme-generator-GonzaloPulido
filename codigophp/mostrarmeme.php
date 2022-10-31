@@ -1,4 +1,6 @@
 <?php
+require("logintest.php");
+
 //url for meme creation
 $url = 'https://api.imgflip.com/caption_image';
 $id = $_GET['id'];
@@ -37,5 +39,8 @@ $data = json_decode($result, true);
 
 //if success show image
 if($data["success"]) {
+    $url = $data["data"]["url"];
+    $nombreimg = $_SESSION["nombre"]."_".date("dmyhis").".png";
+    file_put_contents("memes/$nombreimg", file_get_contents($url));
     echo "<img src='" . $data["data"]["url"] . "'>";
 }
