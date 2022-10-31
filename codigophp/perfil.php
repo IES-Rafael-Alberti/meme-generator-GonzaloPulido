@@ -14,6 +14,7 @@
         <h1 id="title">MEME GENERATOR</h1>
         <nav>
             <?php 
+            require("logintest.php");
             $nombre = $_SESSION["nombre"];
             print("<a href='perfil.php'>$nombre</a>");
             ?>
@@ -22,10 +23,23 @@
     </header>
     <section>
         <article>
-            <form action='guardameme.php'  method='post' enctype='multipart/form-data'>
-            <input type="hidden" value="<?php echo($data["data"]["url"])?>" id="url" name="url">
-            <input type="submit" value="Guardar Meme" id="save"> 
-            <form>
+            <?php
+                require("conecta.php");
+                $sql = "SELECT * FROM meme WHERE idusuario = :idusuario";
+
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(":idusuario",$_SESSION["id"]);
+                $stmt->execute();
+                $memes = $stmt->fetchAll();
+
+                if($memes){
+                    foreach($memes as $meme) {
+                        $ruta = $meme["ruta"];
+                        echo "<img src='$ruta'>";
+                    }
+                }
+            ?>
+            
         </article>
     </section>
 </body>
