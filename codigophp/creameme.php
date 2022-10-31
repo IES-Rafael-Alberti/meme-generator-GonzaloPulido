@@ -28,12 +28,12 @@ $cajas = $_GET["cajas"]
     </header>
     <section>
         <article>
-        <form action="" method="post" enctype="multipart/form-data">
             <?php
+            echo "<form action='mostrarmeme.php?box=".$cajas."&id=".$id."'  method='post' enctype='multipart/form-data'>";
             echo "<img width='250px' src='" . $url . "'>";
             for($i = 1; $i<=$cajas;$i++){
             echo "<br><label for='Name'>Texto $i</label><br>";
-            echo "<input type='text' name='nombre' id='nombre'><br>";
+            echo "<input type='text' name='texto$i' id='texto$i'><br>";
             }
             echo "<input type='submit' value='Enviar'>"
             ?>
