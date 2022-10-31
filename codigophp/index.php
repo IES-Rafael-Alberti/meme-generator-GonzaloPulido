@@ -18,7 +18,8 @@ require("logintest.php");
         <h1 id="title">MEME GENERATOR</h1>
         <nav>
             <?php 
-            print($_SESSION['nombre']);
+                $nombre = $_SESSION["nombre"];
+                print("<a href='perfil.php'>$nombre</a>");
             ?>
             <a href="logout.php"><i class="fa-sharp fa-solid fa-power-off"></i></a>
         </nav>
